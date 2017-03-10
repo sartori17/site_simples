@@ -12,7 +12,7 @@ if (isset($_GET['p'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title><?php
         if (isset($_GET['p'])) {
-            ucfirst($_GET['p']);
+            echo ucfirst($_GET['p']);
         } else {
             echo "Home";
         }
