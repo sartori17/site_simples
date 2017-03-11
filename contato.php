@@ -8,7 +8,7 @@
 ?>
 <h2>Contato</h2>
 
-<form method="post" action="index.php?p=submit_form">
+<form method="post" action="submit_form">
     <div class="form-group">
         <label for="InputNome">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>

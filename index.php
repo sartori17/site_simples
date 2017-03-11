@@ -1,9 +1,45 @@
 <?php
-if (isset($_GET['p'])) {
-    $pagina = $_GET['p'];
-} else {
-    $pagina = "home";
+function rotas_validas ()
+{
+    return $rota_validas = array(
+        "contato" => "contato.php",
+        "empresa" => "empresa.php",
+        "produtos" => "produtos.php",
+        "servicos" => "servicos.php",
+        "home" => "home.php",
+        "submit_form" => "submit_form.php",
+        "404" => "404.php"
+    );
 }
+
+function get_arquivo () {
+    $rota = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    $path = $rota['path'];
+    if ($path == "/") {
+        $path = "/home";
+    }
+
+    $path_completo = explode("/", $path);
+
+    if (is_array ($path_completo)) {
+        $arquivo = $path_completo[1];
+    } else {
+        $arquivo = str_replace("/", "", $path);
+    }
+
+    return $arquivo;
+}
+
+$arquivo = get_arquivo();
+$rotas = rotas_validas();
+
+if (isset($rotas[$arquivo]) ) {
+    $pagina = $rotas[$arquivo];
+} else {
+    $pagina = $rotas[404];
+    $arquivo = 404;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +47,8 @@ if (isset($_GET['p'])) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title><?php
-        if (isset($_GET['p'])) {
-            echo ucfirst($_GET['p']);
+        if (isset($arquivo)) {
+            echo ucfirst($arquivo);
         } else {
             echo "Home";
         }
@@ -27,10 +63,10 @@ if (isset($_GET['p'])) {
 
 <div class="container-fluid">
     <?php
-    if (file_exists($pagina . ".php") === true) {
-        require_once($pagina . ".php");
-    } elseif (isset($_GET['p'])) {
-        ?><h2>Http error 404 - File Not found</h2><?php
+    if ( file_exists($pagina) === true ) {
+        require_once($pagina);
+    } else {
+        require_once("404.php");
     }
     ?>
 </div>
