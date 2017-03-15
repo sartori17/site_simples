@@ -7,10 +7,13 @@
  */
 
 if (isset($_POST)) {
-    echo "Dados enviados com sucesso, abaixo seguem os dados que você enviou.<br>";
-    echo "Nome: ".$_POST['nome']."<br>";
-    echo "Email: ".$_POST['email']."<br>";
-    echo "Assunto: ".$_POST['assunto']."<br>";
-    echo "Mensagem: ".$_POST['mensagem']."<br>";
+    $conteudo .= "Dados enviados com sucesso, abaixo seguem os dados que você enviou.<br>";
+    $conteudo .=  "Nome: ".$_POST['nome']."<br>";
+    $conteudo .=  "Email: ".$_POST['email']."<br>";
+    $conteudo .= "Assunto: ".$_POST['assunto']."<br>";
+    $conteudo .= "Mensagem: ".$_POST['mensagem']."<br>";
+    $titulo = utf8_decode("Formulário");
+    $descricao = utf8_decode($conteudo);
+    require_once ("home.php");
 }
 ?>
