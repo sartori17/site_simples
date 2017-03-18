@@ -13,13 +13,15 @@ $conn = conexaoDB();
 
 $query = "select * from rotas r 
                 left join conteudo c ON c.rota_id = r.id
-                where descricao like :busca;";
+                where conteudo like :busca;";
 
 $stmt = $conn->prepare($query);
 $tipo_menu = 1;
 //$stmt->bindParam(":busca", $inputBusca);
 $stmt->execute(array(':busca' => '%'.$inputBusca.'%'));
 $busca = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+//print_r($stmt->errorInfo());
 
 foreach ($busca as $dados) {
     $conteudo .= "<div>";
@@ -30,9 +32,8 @@ foreach ($busca as $dados) {
 }
 
 if (sizeof($busca) == 0) {
-    $conteudo = "Nenhuma página possui o conteudo <b>" . $inputBusca . "</b>.";
+    $conteudo = "Nenhuma página possui o conteúdo <b>" . $inputBusca . "</b>.";
 }
 
-$titulo = utf8_decode("Busca");
-$descricao = utf8_decode($conteudo);
-require_once ("home.php");
+return $descricao = utf8_decode($conteudo);
+

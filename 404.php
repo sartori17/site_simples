@@ -6,6 +6,4 @@
  * Time: 21:20
  */
 
-?>
-
-<h2>Http error 404 - File Not found</h2>
+return '<h2>Http error 404 - File Not found</h2>';
