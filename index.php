@@ -3,7 +3,7 @@
 require_once("home.php");
 require_once("login.php");
 require_once("submit_form.php");
-require_once("javascript.php");
+
 extract(carregar_pagina());
 ?>
 <?php if (!isset($_SESSION['logado'])) { ?>
@@ -16,11 +16,10 @@ extract(carregar_pagina());
             <label for="inputPassword">Senha</label>
             <input type="password" class="form-control input-sm" id="InputPass" name="InputPass" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-default">login</button>
+        <button type="submit" class="btn btn-default">acessar</button>
     </form>
-<?php } else { ?>
-
 <?php } ?>
+
 <form class="form-inline text-right" method="post" action="busca">
     <div class="form-group">
         <label class="sr-only" for="InputBusca">Buscar</label>
@@ -68,6 +67,7 @@ extract(carregar_pagina());
 </div>
 </html>
 
+<?php require_once("javascript.php"); ?>
 
 <script>
     CKEDITOR.replace( 'inputConteudo', {

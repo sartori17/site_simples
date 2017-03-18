@@ -31,7 +31,6 @@ function login ($login, $pass)
     $hashed_password = $user['pass'];
 
     if (password_verify($pass, $hashed_password)) {
-        session_start();
         $_SESSION['logado'] = 1;
         $_SESSION['user'] = $user;
         header('Location: home');

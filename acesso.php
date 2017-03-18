@@ -14,13 +14,8 @@ return '
         <input type="text" class="form-control" id="InputLogin" name="InputLogin" placeholder="Login">
     </div>
     <div class="form-group">
-        <label for="inputPassword">Password</label>
+        <label for="inputPassword">Senha</label>
         <input type="password" class="form-control" id="InputPass" name="InputPass" placeholder="Password">
     </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox"> Remember me
-        </label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default">Acessar</button>
 </form>';
