@@ -22,6 +22,8 @@ $stmt->execute(array(':busca' => '%'.$inputBusca.'%'));
 $busca = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 //print_r($stmt->errorInfo());
+$conteudo = "";
+$x = 0;
 
 foreach ($busca as $dados) {
     $conteudo .= "<div>";

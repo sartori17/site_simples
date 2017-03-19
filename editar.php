@@ -20,21 +20,26 @@ if (is_array($path)) {
 }
 
 if (isset($_POST['atualizar_conteudo'])) {
+    $inputTitulo = utf8_decode($_POST['inputTitulo']);
+    $inputConteudo = utf8_decode($_POST['inputConteudo']);
+    $inputDestino = $_POST['inputDestino'];
+    $inputOrigem = $_POST['inputOrigem'];
+
     $conn = conexaoDB();
 
     $query = "UPDATE rotas set origem = :origem, destino = :destino WHERE id = :id LIMIT 1;";
 
     $stmt = $conn->prepare($query);
-    $stmt->bindParam(":origem", $_POST['inputOrigem'], PDO::PARAM_STR);
-    $stmt->bindParam(":destino", $_POST['inputDestino'], PDO::PARAM_STR);
+    $stmt->bindParam(":origem", $inputOrigem, PDO::PARAM_STR);
+    $stmt->bindParam(":destino", $inputDestino, PDO::PARAM_STR);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
 
     $query = "UPDATE conteudo set titulo = :titulo, conteudo = :conteudo WHERE rota_id = :id LIMIT 1;";
 
     $stmt = $conn->prepare($query);
-    $stmt->bindParam(":titulo", utf8_decode($_POST['inputTitulo']), PDO::PARAM_STR);
-    $stmt->bindParam(":conteudo", utf8_decode($_POST['inputConteudo']), PDO::PARAM_STR);
+    $stmt->bindParam(":titulo", $inputTitulo, PDO::PARAM_STR);
+    $stmt->bindParam(":conteudo", $inputConteudo, PDO::PARAM_STR);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
 }
@@ -49,7 +54,7 @@ $stmt = $conn->prepare($query);
 $stmt -> bindParam (":id", $id, PDO::PARAM_INT);
 $stmt->execute();
 $busca = $stmt -> fetch(PDO::FETCH_ASSOC);
-
+$conteudo = "";
 //print_r($stmt->errorInfo());
 $conteudo .= "<br>";
 
